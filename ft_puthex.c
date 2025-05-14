@@ -12,20 +12,16 @@
 
 #include "libftprintf.h"
 
-int	ft_puthex(int n)
+int	ft_puthex(unsigned long n, char *base)
 {
-	if (n == -2147483648)
+	int c;
+
+	c = 0;
+
+	if (n >= 16)
 	{
-		write(1, "-2147483648", 11);
-		return (0);
+		c = c + ft_puthex((n / 16), base);
 	}
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n >= 10)
-		ft_puthex(n / 10);
-	ft_putchar((n % 10) + '0');
-	return (n);
+	c = c + ft_putchar(base[n % 16]);
+	return (c);
 }

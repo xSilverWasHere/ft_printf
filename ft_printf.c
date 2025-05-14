@@ -28,8 +28,12 @@ static int	ft_format(const char *format, va_list ap)
 		c += ft_putnbr(va_arg(ap, int));
 	if (*format == 'u')
 		c += ft_putunsigned(va_arg(ap, int));
+	if (*format == 'X')
+		c += ft_puthex(va_arg(ap, unsigned int), "0123456789ABCDEF");
 	if (*format == 'x')
-		c += ft_puthex(va_arg(ap, int));
+		c += ft_puthex(va_arg(ap, unsigned int), "0123456789abcdef");
+	if (*format == 'p')
+		c += ft_printptr(va_arg(ap, void *));
 	return(c);
 }
 
@@ -61,16 +65,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(ap);
 	return (c);
-}
-
-
-#include <stdio.h>
-int	main(void)
-{
-	char *s = "Hello World!";
-	int c = ft_printf("%s\n", s);
-	ft_printf("%d\n", c);
-
-	int d = printf("%s\n", s);
-	printf("%d\n", d);
 }
