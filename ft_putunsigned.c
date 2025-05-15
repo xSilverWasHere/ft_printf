@@ -10,12 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putunsigned(unsigned int n)
 {
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar((n % 10) + '0');
-	return (n);
+	int	c;
+
+	c = 0;
+	if (n > 9)
+	{
+		c += ft_putnbr(n / 10);
+		c += ft_putnbr(n % 10);
+		return (c);
+	}
+	n = n + 48;
+	c += write(1, &n, 1);
+	return (c);
 }

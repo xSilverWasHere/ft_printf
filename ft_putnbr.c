@@ -10,22 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putnbr(int n)
 {
+	int	c;
+
+	c = 0;
 	if (n == -2147483648)
 	{
 		write(1, "-2147483648", 11);
-		return (0);
+		return (11);
 	}
 	if (n < 0)
 	{
-		ft_putchar('-');
+		write(1, "-", 1);
 		n = -n;
+		c++;
 	}
 	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar((n % 10) + '0');
-	return (n);
+	{
+		c += ft_putnbr(n / 10);
+		c += ft_putnbr(n % 10);
+	}
+	if (n >= 0 && n <= 9)
+	{
+		n = n + 48;
+		c += write(1, &n, 1);
+	}
+	return (c);
 }

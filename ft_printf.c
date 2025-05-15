@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_format(const char *format, va_list ap)
 {
-	int c;
+	int	c;
 
 	c = 0;
-
 	if (*format == '%')
 		c += ft_putchar('%');
 	if (*format == 'c')
@@ -34,21 +33,18 @@ static int	ft_format(const char *format, va_list ap)
 		c += ft_puthex(va_arg(ap, unsigned int), "0123456789abcdef");
 	if (*format == 'p')
 		c += ft_printptr(va_arg(ap, void *));
-	return(c);
+	return (c);
 }
-
 
 int	ft_printf(const char *format, ...)
 {
-	va_list ap;
-	int	i;
-	int	c;
+	va_list	ap;
+	int		i;
+	int		c;
 
 	va_start(ap, format);
-
 	i = 0;
 	c = 0;
-
 	while (format[i])
 	{
 		if (format[i] == '%')

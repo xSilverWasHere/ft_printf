@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printptr(void *ptr)
 {
-	int c;
+	int	c;
 
 	c = 0;
-
 	if (!ptr)
 	{
 		return (ft_putstr("(nil)"));

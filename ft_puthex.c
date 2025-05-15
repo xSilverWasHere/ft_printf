@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_puthex(unsigned long n, char *base)
 {
-	int c;
+	int	c;
 
 	c = 0;
-
 	if (n >= 16)
 	{
 		c = c + ft_puthex((n / 16), base);
